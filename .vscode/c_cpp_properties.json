@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "/usr/include/",
+                "/usr/local/include/",
+                "/home/fyn/Projects/catkin_ws/src/VINS_Mono/"
+            ],
+            "defines": [],
+            "compileCommands": "/path/to/compile_commands.json",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}
