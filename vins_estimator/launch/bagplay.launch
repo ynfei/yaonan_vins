@@ -1,0 +1,11 @@
+<launch>
+<arg name="path" default="/home/fyn/Documents/datasets/" />
+<arg name="file1" default="kitti_2011_10_03_drive_0027_synced" />
+<arg name="file2" default="industry_2019-01-28-12-02-01" />
+<arg name="file3" default="lxdd_2019-01-28-12-08-05" />
+
+<node pkg="rosbag" type="play" name="player" output="screen" args="$(arg path)$(arg file2).bag" />
+
+<node pkg="image_transport" name="republish" type="republish"  output="screen" 
+      args="compressed in:=/camera_front/image_color raw out:=/camera_front/image_color" />
+</launch>
