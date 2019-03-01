@@ -243,7 +243,7 @@ void pubPointCloud(const Estimator &estimator, const std_msgs::Header &header)
     point_cloud.header = header;
     loop_point_cloud.header = header;
 
-
+   
     for (auto &it_per_id : estimator.f_manager.feature)
     {
         int used_num;
@@ -261,6 +261,12 @@ void pubPointCloud(const Estimator &estimator, const std_msgs::Header &header)
         p.y = w_pts_i(1);
         p.z = w_pts_i(2);
         point_cloud.points.push_back(p);
+
+        //write pointcloud to file
+        ofstream foutP(POINTCLOUD_SAVE_PATH, ios::app);
+        foutP.setf(ios::fixed,ios::floatfield);
+        foutP<<p.x<<" "<<p.y<<" "<<p.z<<" "<<endl;
+        foutP.close();
     }
     pub_point_cloud.publish(point_cloud);
 

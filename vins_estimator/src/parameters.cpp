@@ -23,6 +23,10 @@ std::string IMU_TOPIC;
 double ROW, COL;
 double TD, TR;
 
+//rosbag name
+std::string POINTCLOUD_SAVE_PATH;
+std::string ROSBAG_NAME;
+
 template <typename T>
 T readParam(ros::NodeHandle &n, std::string name)
 {
@@ -56,10 +60,16 @@ void readParameters(ros::NodeHandle &n)
     MIN_PARALLAX = fsSettings["keyframe_parallax"];
     MIN_PARALLAX = MIN_PARALLAX / FOCAL_LENGTH;
 
-    std::string OUTPUT_PATH;
+    std::string OUTPUT_PATH,POINTCLOUD_PATH,ROSBAG_NAME;
     fsSettings["output_path"] >> OUTPUT_PATH;
+    fsSettings["pointcloud_path"] >> POINTCLOUD_PATH;
+    fsSettings["rosbag_name"] >> ROSBAG_NAME;
+    POINTCLOUD_SAVE_PATH = POINTCLOUD_PATH + ROSBAG_NAME + ".txt";
+    std::cout<< "pointcloud_path " << POINTCLOUD_SAVE_PATH << std::endl;
     VINS_RESULT_PATH = OUTPUT_PATH + "/vins_result_no_loop.csv";
     std::cout << "result path " << VINS_RESULT_PATH << std::endl;
+    std::ofstream fpout(POINTCLOUD_SAVE_PATH, std::ios::out); 
+    fpout.close();
     std::ofstream fout(VINS_RESULT_PATH, std::ios::out);
     fout.close();
 

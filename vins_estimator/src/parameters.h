@@ -37,8 +37,8 @@ extern double TR;
 extern int ESTIMATE_TD;
 extern int ROLLING_SHUTTER;
 extern double ROW, COL;
-
-
+extern std::string ROSBAG_NAME;
+extern std::string POINTCLOUD_SAVE_PATH;
 void readParameters(ros::NodeHandle &n);
 
 enum SIZE_PARAMETERIZATION

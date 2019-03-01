@@ -5,7 +5,6 @@
 <arg name="file3" default="lxdd_2019-01-28-12-08-05" />
 
 <node pkg="rosbag" type="play" name="player" output="screen" args="$(arg path)$(arg file2).bag" />
-
 <node pkg="image_transport" name="republish" type="republish"  output="screen" 
       args="compressed in:=/camera_front/image_color raw out:=/camera_front/image_color" />
 </launch>
