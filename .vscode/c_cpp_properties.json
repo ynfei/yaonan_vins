@@ -5,7 +5,10 @@
             "includePath": [
                 "/usr/include/",
                 "/usr/local/include/",
-                "/home/fyn/Projects/catkin_ws/src/VINS_Mono/"
+                "/opt/ros/kinetic/include/ros",
+                "/opt/ros/kinetic/include",
+                "/home/fyn/Projects/catkin_ws/src/VINS-Mono",
+                "/usr/include/eigen3"
             ],
             "defines": [],
             "compileCommands": "/path/to/compile_commands.json",
