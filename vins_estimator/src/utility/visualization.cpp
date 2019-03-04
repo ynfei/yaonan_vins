@@ -242,8 +242,9 @@ void pubPointCloud(const Estimator &estimator, const std_msgs::Header &header)
     sensor_msgs::PointCloud point_cloud, loop_point_cloud;
     point_cloud.header = header;
     loop_point_cloud.header = header;
+    ofstream foutP(POINTCLOUD_SAVE_PATH, ios::app);
+    ofstream foutP_margin(HISTORY_POINTCLOUD, ios::app);
 
-   
     for (auto &it_per_id : estimator.f_manager.feature)
     {
         int used_num;
@@ -263,15 +264,14 @@ void pubPointCloud(const Estimator &estimator, const std_msgs::Header &header)
         point_cloud.points.push_back(p);
 
         //write pointcloud to file
-        ofstream foutP(POINTCLOUD_SAVE_PATH, ios::app);
         foutP.setf(ios::fixed,ios::floatfield);
         foutP<<p.x<<" "<<p.y<<" "<<p.z<<" "<<endl;
-        foutP.close();
     }
+    foutP.close();
     pub_point_cloud.publish(point_cloud);
 
 
-    // pub margined potin
+    // pub margined point
     sensor_msgs::PointCloud margin_cloud;
     margin_cloud.header = header;
 
@@ -296,8 +296,13 @@ void pubPointCloud(const Estimator &estimator, const std_msgs::Header &header)
             p.y = w_pts_i(1);
             p.z = w_pts_i(2);
             margin_cloud.points.push_back(p);
+
+            //save history point
+            foutP_margin.setf(ios::fixed,ios::floatfield);
+            foutP_margin << p.x << " " << p.y << " " << p.z << " " <<endl;
         }
     }
+    foutP_margin.close();
     pub_margin_cloud.publish(margin_cloud);
 }
 

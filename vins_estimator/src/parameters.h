@@ -39,6 +39,7 @@ extern int ROLLING_SHUTTER;
 extern double ROW, COL;
 extern std::string ROSBAG_NAME;
 extern std::string POINTCLOUD_SAVE_PATH;
+extern std::string HISTORY_POINTCLOUD;
 void readParameters(ros::NodeHandle &n);
 
 enum SIZE_PARAMETERIZATION
